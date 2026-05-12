@@ -2272,7 +2272,8 @@ function importarJSON(input) {
       // Clean BOM and whitespace
       let text = e.target.result;
       if (typeof text !== 'string') { toast('El archivo no es texto válido.', 'er'); return; }
-      text = text.replace(/^\uFEFF/, '').trim();
+      text = text.replace(/^﻿/, '').trim();
+      text = text.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
       // Remove any trailing commas (common JSON error)
       text = text.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
       if (!text.startsWith('{')) { 
